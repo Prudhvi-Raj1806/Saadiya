@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- UPDATED TITLE -->
+    <title>Saadiya Shaik | BBA Student & Future Leader</title>
+    <!-- We'll use the Inter font family -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CSS Reset & Base Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            /* This enables smooth scrolling for anchor links (like #about) */
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #0d1117; /* Fallback */
+            color: #ffffff;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+
+            /* --- NEW STATIC BACKGROUND --- */
+            /* Removed the animated gradient for the new cube animation */
+            background: linear-gradient(135deg, #0a2a4c, #0d1117);
+        }
+
+        /* Snap Scrolling Container */
+        main {
+            scroll-snap-type: y mandatory;
+            overflow-y: scroll;
+            height: 100vh;
+        }
+
+        /* --- REMOVED Animated Gradient --- */
+        /* @keyframes gradientShift { ... } */
+
+        /* --- NEW BACKGROUND CUBE ANIMATION --- */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Behind all content */
+            overflow: hidden;
+            list-style: none; /* Remove list bullets */
+        }
+
+        .bg-animation li {
+            position: absolute;
+            bottom: -200px; /* Start below the screen */
+            display: block;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: cubeFloat 25s linear infinite;
+        }
+
+        .bg-animation li:nth-child(1) {
+            left: 25%;
+            width: 80px;
+            height: 80px;
+            animation-delay: 0s;
+        }
+        
+        .bg-animation li:nth-child(2) {
+            left: 10%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 2s;
+            animation-duration: 12s;
+        }
+        
+        .bg-animation li:nth-child(3) {
+            left: 70%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 4s;
+        }
+        
+        .bg-animation li:nth-child(4) {
+            left: 40%;
+            width: 60px;
+            height: 60px;
+            animation-delay: 0s;
+            animation-duration: 18s;
+        }
+        
+        .bg-animation li:nth-child(5) {
+            left: 65%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 0s;
+        }
+        
+        .bg-animation li:nth-child(6) {
+            left: 75%;
+            width: 110px;
+            height: 110px;
+            animation-delay: 3s;
+        }
+        
+        .bg-animation li:nth-child(7) {
+            left: 35%;
+            width: 150px;
+            height: 150px;
+            animation-delay: 7s;
+        }
+        
+        .bg-animation li:nth-child(8) {
+            left: 50%;
+            width: 25px;
+            height: 25px;
+            animation-delay: 15s;
+            animation-duration: 45s;
+        }
+        
+        .bg-animation li:nth-child(9) {
+            left: 20%;
+            width: 15px;
+            height: 15px;
+            animation-delay: 2s;
+            animation-duration: 35s;
+        }
+        
+        .bg-animation li:nth-child(10) {
+            left: 85%;
+            width: 150px;
+            height: 150px;
+            animation-delay: 0s;
+            animation-duration: 11s;
+        }
+
+        @keyframes cubeFloat {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+                border-radius: 0;
+            }
+            100% {
+                /* Float up 120vh and rotate */
+                transform: translateY(-120vh) rotate(720deg);
+                opacity: 0;
+                border-radius: 50%; /* Morphs into a circle */
+            }
+        }
+        
+        /* --- Section Styling --- */
+        section {
+            height: 100vh; /* Each section is full viewport height */
+            /* REMOVED min-height: 700px; This was forcing content to overflow */
+            scroll-snap-align: start; /* Snap to the start of each section */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2.5rem 2rem; /* REDUCED top/bottom padding */
+            text-align: center;
+            position: relative;
+            overflow: hidden; /* Hide overflow for animations */
+        }
+
+        h1 {
+            font-size: 4rem; /* REDUCED */
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            font-size: 2.25rem; /* REDUCED */
+            font-weight: 700;
+            margin-bottom: 1.5rem; /* REDUCED */
+            color: #06b6d4; /* Teal/Cyan Highlight */
+        }
+
+        h3 {
+            font-size: 1.25rem; /* REDUCED */
+            font-weight: 600;
+            margin-bottom: 0.75rem; /* REDUCED */
+            color: #06b6d4; /* Highlight card titles */
+        }
+
+        p {
+            font-size: 1rem; /* REDUCED */
+            line-height: 1.6;
+            max-width: 650px;
+        }
+
+        /* --- Glassmorphism Panel --- */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+            padding: 2rem; /* REDUCED */
+            width: 100%;
+            max-width: 900px;
+        }
+
+        /* --- Button Styles --- */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            margin: 0.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: #06b6d4;
+            color: #0d1117;
+            border: 2px solid #06b6d4;
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: #06b6d4;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: #06b6d4;
+            border: 2px solid #06b6d4;
+        }
+
+        .btn-secondary:hover {
+            background-color: #06b6d4;
+            color: #0d1117;
+        }
+
+        /* --- Scroll Fade-in Animation --- */
+        .fade-in {
+            opacity: 0;
+            /* Start slightly smaller */
+            transform: scale(0.95);
+            /* Animate both opacity and the scale (transform) */
+            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: opacity, transform; /* Performance hint */
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            /* Scale to normal size */
+            transform: scale(1);
+        }
+
+        /* --- Section: Hero --- */
+        #hero .intro-text {
+            margin: 1rem 0 1.5rem; /* REDUCED */
+            font-size: 1rem; /* REDUCED */
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        #tagline {
+            font-size: 1.5rem; /* REDUCED */
+            font-weight: 600;
+            color: #06b6d4;
+            height: 2.5rem; /* REDUCED */
+        }
+        
+        /* Typing cursor */
+        #tagline::after {
+            content: '_';
+            animation: blink 0.7s infinite;
+            color: #06b6d4;
+            font-weight: 400;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        /* --- Section: About (NEW LAYOUT) --- */
+        .about-container {
+            display: flex;
+            align-items: center; /* Vertically center items */
+            text-align: left;
+            gap: 2rem; /* REDUCED */
+        }
+
+        /* NEW PFP Style */
+        .about-pfp {
+            flex-shrink: 0; /* Don't shrink */
+            width: 180px; /* REDUCED */
+            height: 180px; /* REDUCED */
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid rgba(255, 255, 255, 0.15);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .about-pfp img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* NEW: Container for bio and stats */
+        .about-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem; /* REDUCED */
+        }
+
+        .about-bio {
+            /* No flex value needed */
+        }
+
+        .about-stats {
+            display: flex;
+            gap: 1rem; /* REDUCED */
+        }
+
+        .stat-item {
+            flex: 1; /* Stats share space */
+            background: rgba(6, 182, 212, 0.1);
+            padding: 0.75rem; /* REDUCED */
+            border-radius: 12px;
+        }
+
+        .stat-item h3 {
+            font-size: 2rem; /* REDUCED */
+            font-weight: 800;
+            color: #06b6d4;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-item p {
+            font-size: 0.9rem; /* REDUCED */
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* --- Section: Skills --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* CHANGED from 4 */
+            gap: 1rem; /* REDUCED */
+            padding: 1rem;
+            max-width: 1000px; /* ADDED to constrain width */
+        }
+
+        .skill-tag {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.75rem 1rem; /* REDUCED */
+            border-radius: 50px;
+            font-size: 1rem; /* REDUCED */
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: #06b6d4;
+            color: #0d1117;
+            transform: translateY(-3px);
+        }
+
+        /* --- Section: Journey --- */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            padding: 1.5rem; /* REDUCED */
+        }
+
+        /* The vertical line */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 30px;
+            height: 100%;
+            width: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 80px; /* Space for year and dot */
+            margin-bottom: 1.5rem; /* REDUCED */
+            text-align: left;
+        }
+        
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        /* The dot on the line */
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            background: #06b6d4;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            z-index: 1;
+        }
+
+        .timeline-year {
+            position: absolute;
+            left: -60px; /* CHANGED: Was -20px */
+            top: 2px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #06b6d4;
+            width: 80px; /* CHANGED: Was 100px */
+            text-align: right;
+        }
+
+        .timeline-content h3 {
+            color: #fff; /* White title for timeline */
+        }
+        .timeline-content p {
+            font-size: 0.9rem; /* REDUCED */
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* --- Section: Projects (REDONE) --- */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem; /* REDUCED */
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .project-card {
+            /* This is now a glass-panel, styles are inherited */
+            text-align: left;
+            transition: transform 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-8px); /* Simple hover effect */
+        }
+
+        .project-card p {
+            font-size: 0.9rem; /* REDUCED */
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem; /* REDUCED */
+        }
+
+        .project-tools {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            padding-top: 0.75rem; /* REDUCED */
+        }
+        
+        .project-tools span {
+            font-size: 0.85rem;
+            font-weight: 500;
+            background: rgba(6, 182, 212, 0.1);
+            color: #06b6d4;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+        }
+
+        /* --- REMOVED GALLERY STYLES --- */
+
+        /* --- Section: Resume --- */
+        .resume-container {
+            width: 100%;
+            max-width: 900px;
+            padding: 1.5rem; /* REDUCED */
+        }
+
+        #resume-viewer {
+            width: 100%;
+            height: 50vh; /* INCREASED height to fill space */
+            min-height: 350px; /* REDUCED min-height */
+            border: none;
+            border-radius: 10px;
+            margin-bottom: 1.5rem; /* REDUCED */
+            background: #fff; /* Background for the PDF loader */
+        }
+        
+        /* --- Section: Contact & Footer --- */
+        #contact {
+            text-align: center;
+        }
+
+        /* ADDED new class for the contact panel */
+        .contact-panel {
+            max-width: 700px; /* Make it a bit smaller */
+            text-align: center;
+        }
+
+        #contact p {
+            margin-bottom: 1.5rem; /* REDUCED */
+            font-size: 1rem; /* REDUCED */
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem; /* REDUCED */
+        }
+        
+        #footer {
+            position: absolute;
+            bottom: 2rem;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 900px) {
+            h1 { font-size: 3rem; } /* REDUCED */
+            h2 { font-size: 1.75rem; } /* REDUCED */
+            p { font-size: 1rem; }
+            section { padding: 2rem 1.5rem; } /* REDUCED */
+
+            /* REMOVED: This makes panels scrollable on mobile to prevent overflow */
+            .glass-panel {
+                /* REMOVED max-height: calc(100vh - 10rem); */
+                /* REMOVED overflow-y: auto; */
+                /* REMOVED -webkit-overflow-scrolling: touch; */
+            }
+
+            .about-container {
+                flex-direction: column;
+                gap: 2rem;
+                text-align: center;
+            }
+            
+            /* NEW: Center PFP on mobile */
+            .about-pfp {
+                width: 120px; /* REDUCED */
+                height: 120px; /* REDUCED */
+            }
+            
+            .about-content {
+                text-align: left;
+            }
+            
+            .about-stats {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            /* UPDATED: Project grid responsive */
+            .projects-container {
+                grid-template-columns: 1fr;
+            }
+
+            /* REMOVED: Mobile styles for 3D flip */
+
+            /* REMOVED: Gallery responsive */
+            
+            /* Adjust timeline for smaller screens */
+            .timeline::before { left: 10px; }
+            .timeline-item { padding-left: 45px; }
+            .timeline-item::before { left: 0; }
+            .timeline-year {
+                left: 0px; /* CORRECTED: Was -15px. Stops it from going outside the panel */
+                top: auto;
+                bottom: -15px; /* REDUCED */
+                width: auto;
+                font-size: 1rem;
+                text-align: left;
+                color: rgba(255, 255, 255, 0.8);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            h1 { font-size: 2.25rem; } /* REDUCED */
+            #tagline { font-size: 1.15rem; height: 2.5rem; } /* REDUCED */
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .btn-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+            }
+            
+            .contact-buttons {
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+
+            /* REMOVED: Gallery responsive */
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- NEW BACKGROUND ANIMATION CONTAINER -->
+    <div class="bg-animation">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </div>
+
+    <!-- This 'main' element is the snap-scroll container -->
+    <main>
+
+        <!-- ===== Hero Section ===== -->
+        <section id="hero">
+            <div class="fade-in">
+                <!-- UPDATED -->
+                <h1>Saadiya Shaik</h1>
+                <p id="tagline"></p>
+                <p class="intro-text">
+                    <!-- UPDATED -->
+                    I'm a BBA student passionate about marketing, management, and building community. Let's create something amazing together.
+                </p>
+                <div class="btn-container">
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-secondary">Let's Talk</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== About Section (NEW LAYOUT) ===== -->
+        <section id="about">
+            <div class="fade-in">
+                <h2>About Me</h2>
+                <div class="glass-panel about-container">
+                    <!-- NEW PFP -->
+                    <div class="about-pfp">
+                        <img src="https://placehold.co/200x200/FFFFFF/06b6d4?text=SS" alt="Saadiya Shaik Profile Picture" onerror="this.src='https://placehold.co/200x200/FFFFFF/06b6d4?text=SS'">
+                    </div>
+                    <!-- NEW Content Wrapper -->
+                    <div class="about-content">
+                        <div class="about-bio">
+                            <!-- UPDATED -->
+                            <h3>Connect. Create. Lead.</h3>
+                            <p>
+                                I'm a BBA student specializing in Marketing and Human Resources. I believe that great business starts with understanding people—whether they're customers or colleagues.
+                            </p>
+                            <p style="margin-top: 1rem;">
+                                My passion is in crafting marketing campaigns that resonate and building teams that thrive. I'm currently looking for internships where I can apply my skills in social media strategy and talent development.
+                            </p>
+                        </div>
+                        <div class="about-stats">
+                            <!-- UPDATED -->
+                            <div class="stat-item">
+                                <h3>5+</h3>
+                                <p>Marketing Campaigns</p>
+                            </div>
+                            <div class="stat-item">
+                                <h3>2</h3>
+                                <p>Leadership Roles</p>
+                            </div>
+                            <div class="stat-item">
+                                <h3>3</h3>
+                                <p>Case Competitions</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Skills Section ===== -->
+        <section id="skills">
+            <div class="fade-in">
+                <h2>My Toolkit</h2>
+                <!-- UPDATED SKILLS -->
+                <div class="glass-panel skills-grid">
+                    <span class="skill-tag">Social Media Marketing</span>
+                    <span class="skill-tag">Content Creation</span>
+                    <span class="skill-tag">Public Speaking</span>
+                    <span class="skill-tag">Team Leadership</span>
+                    <span class="skill-tag">Market Research</span>
+                    <span class="skill-tag">Event Planning</span>
+                    <span class="skill-tag">Brand Strategy</span>
+                    <span class="skill-tag">Canva & Adobe Express</span>
+                    <span class="skill-tag">Community Management</span>
+                    <span class="skill-tag">Recruitment & Onboarding</span>
+                    <span class="skill-tag">Copywriting</span>
+                    <span class="skill-tag">Project Management</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Journey Section ===== -->
+        <section id="journey">
+            <div class="fade-in">
+                <h2>My Journey</h2>
+                <!-- UPDATED JOURNEY -->
+                <div class="glass-panel timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">2023</div>
+                        <div class="timeline-content">
+                            <h3>Started BBA Program</h3>
+                            <p>Began my business administration journey, focusing on core marketing principles.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2024</div>
+                        <div class="timeline-content">
+                            <h3>President, Marketing Club</h3>
+                            <p>Elected to lead the university's Marketing Club, organizing 5+ workshops and events for 200+ members.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2025</div>
+                        <div class="timeline-content">
+                            <h3>Social Media Intern</h3>
+                            <p>Managed social channels for a local non-profit, increasing engagement by 40% over 3 months.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2026</div>
+                        <div class="timeline-content">
+                            <h3>Case Competition Winner</h3>
+                            <p>Won 1st place in the National Business Case Competition for a novel brand re-launch strategy.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Projects Section (REDONE) ===== -->
+        <section id="projects">
+            <div class="fade-in">
+                <h2>What I've Built</h2>
+                <div class="projects-container">
+                    <!-- Project 1 -->
+                    <div class="project-card glass-panel">
+                        <h3>Campus Wellness Campaign</h3>
+                        <p>Developed and launched a university-wide "Mind & Body" wellness campaign, reaching 5,000+ students via digital and print media.</p>
+                        <div class="project-tools">
+                            <span>Canva</span>
+                            <span>Instagram</span>
+                            <span>Mailchimp</span>
+                        </div>
+                    </div>
+                    <!-- Project 2 -->
+                    <div class="project-card glass-panel">
+                        <h3>Non-Profit Fundraiser Strategy</h3>
+                        <p>Organized a 2-week digital fundraising drive for a local animal shelter, exceeding the $10k donation goal by 50%.</p>
+                        <div class="project-tools">
+                            <span>Content Creation</span>
+                            <span>Email Marketing</span>
+                            <span>Community Mgmt</span>
+                        </div>
+                    </div>
+                    <!-- Project 3 -->
+                    <div class="project-card glass-panel">
+                        <h3>Small Business Brand Kit</h3>
+                        <p>Consulted for a local bakery, developing a complete brand identity kit (logo, brand voice, social templates) for their re-launch.</p>
+                        <div class="project-tools">
+                            <span>Client Relations</span>
+                            <span>Brand Strategy</span>
+                            <span>Adobe Express</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== REMOVED GALLERY SECTION ===== -->
+        
+        <!-- ===== Resume Section ===== -->
+        <section id="resume">
+            <div class="fade-in">
+                <h2>My Resume</h2>
+                <div class="glass-panel resume-container">
+                    <!-- 
+                      This iframe embeds a dummy PDF as a placeholder.
+                      Replace the 'src' with a link to Saadiya's own PDF.
+                    -->
+                    <iframe 
+                        id="resume-viewer" 
+                        src="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
+                        title="Saadiya Shaik's Resume">
+                    </iframe>
+                    <!-- 
+                      This button links to the same dummy PDF for download.
+                      Replace 'href' with her PDF file.
+                    -->
+                    <a 
+                        href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" 
+                        download="SaadiyaShaik_Resume.pdf" 
+                        class="btn btn-primary"
+                    >
+                        Download Resume
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Contact Section ===== -->
+        <section id="contact">
+            <div class="fade-in">
+                <!-- WRAPPED content in a glass-panel -->
+                <div class="glass-panel contact-panel">
+                    <h2>Let's Connect</h2>
+                    <p>
+                        <!-- UPDATED -->
+                        I'm always open to new opportunities and collaborations. <br/>
+                        Let's discuss how I can help your team grow.
+                    </p>
+                    <div class="contact-buttons">
+                        <!-- UPDATED -->
+                        <a href="mailto:saadiya.shaik@example.com" class="btn btn-secondary">Email Me</a>
+                        <a href="#" class="btn btn-secondary">LinkedIn</a>
+                        <a href="#" class="btn btn-secondary">Instagram</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer id="footer">
+                <!-- UPDATED -->
+                <p>&copy; <span id="year"></span> Saadiya Shaik. All rights reserved.</p>
+            </footer>
+        </section>
+
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+
+            // --- 1. Typing Animation ---
+            const taglineElement = document.getElementById("tagline");
+            // UPDATED tagline words for Saadiya
+            const lines = [
+                "BBA Student",
+                "Future Leader",
+                "Marketing Strategist",
+                "Creative Thinker"
+            ];
+            let lineIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            const typeSpeed = 100;
+            const deleteSpeed = 50;
+            const delay = 2000;
+
+            function typeWriter() {
+                const currentLine = lines[lineIndex];
+                let text = '';
+
+                if (isDeleting) {
+                    text = currentLine.substring(0, charIndex - 1);
+                    charIndex--;
+                } else {
+                    text = currentLine.substring(0, charIndex + 1);
+                    charIndex++;
+                }
+
+                taglineElement.textContent = text;
+
+                let speed = isDeleting ? deleteSpeed : typeSpeed;
+
+                if (!isDeleting && charIndex === currentLine.length) {
+                    speed = delay; // Pause at end of line
+                    isDeleting = true;
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    lineIndex = (lineIndex + 1) % lines.length; // Move to next line
+                    speed = typeSpeed;
+                }
+
+                setTimeout(typeWriter, speed);
+            }
+
+            // Start typing animation
+            typeWriter();
+
+            // --- 2. Fade-in on Scroll Animation ---
+            const observerOptions = {
+                root: document.querySelector('main'), // Use the 'main' scroller
+                rootMargin: '0px',
+                threshold: 0.25 // Trigger when 25% of the element is visible
+            };
+
+            function intersectionCallback(entries, observer) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                        observer.unobserve(entry.target); // Stop observing once visible
+                    }
+                });
+            }
+
+            const observer = new IntersectionObserver(intersectionCallback, observerOptions);
+
+            // Observe all elements with the .fade-in class
+            const targets = document.querySelectorAll(".fade-in");
+            targets.forEach(target => observer.observe(target));
+
+            // --- 3. Automatic Footer Year ---
+            const yearElement = document.getElementById("year");
+            if (yearElement) {
+                yearElement.textContent = new Date().getFullYear();
+            }
+
+        });
+    </script>
+</body>
+</html>
